@@ -45,15 +45,13 @@ base64 --decode > /etc/openvpn/gwsvpn.conf <<__EOF__
 %(vpnbuf)s
 
 __EOF__
-
+#make SELinux disable persistent
+echo "SELINUX=disabled" > /etc/selinux/config
+setenforce 0
 systemctl enable openvpn@gwsvpn
 systemctl start openvpn@gwsvpn
 systemctl status openvpn@gwsvpn
 
-### disable SELINUX
-echo "SELINUX=disabled" > /etc/selinux/config
-# need to reboot for SELINUX change to take effect
-shutdown -r now
 
 ###
 
