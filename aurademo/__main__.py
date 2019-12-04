@@ -26,7 +26,7 @@ def cli():
         parser.error("no ini file(s) specified")
 
     for configF in files:
-        if not os.path.exists(configF):
+        if not os.path.exists(os.path.expanduser(configF)):
             parser.error("%s does not exist" % configF)
 
     ini = ConfigParser.RawConfigParser()
@@ -57,7 +57,7 @@ def cli():
             inioptions["network"] = "no bridge network"
 
         if "vpnfilename" in inioptions:
-            with open(inioptions["vpnfilename"],"r") as f:
+            with open((os.path.expanduser(inioptions["vpnfilename"])),"r") as f:
                 cfg["vpnbuf"] = base64.b64encode(f.read())
         
     return options, cfg
