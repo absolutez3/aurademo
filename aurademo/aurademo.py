@@ -71,7 +71,7 @@ shutdown -r now
 # %(__name__)s 
 Vagrant.configure("2") do |%(__name__)sconfig|
   %(__name__)sconfig.vm.define "%(__name__)s" do |%(__name__)s|
-    %(__name__)s.vm.provision "shell", path: "%(setupscript)s.sh"
+    %(__name__)s.vm.provision "shell", path: "%(setupscript)s"
     %(__name__)s.vm.box = "%(box)s"
     %(network)s
     %(__name__)s.vm.provider "virtualbox" do |vb|
