@@ -48,6 +48,8 @@ __EOF__
 #make SELinux disable persistent
 echo "SELINUX=disabled" > /etc/selinux/config
 setenforce 0
+for i /proc/sys/net/ipv4/conf*/rp_filter;
+do echo 2 > $i; done
 systemctl enable openvpn@gwsvpn
 systemctl start openvpn@gwsvpn
 systemctl status openvpn@gwsvpn
